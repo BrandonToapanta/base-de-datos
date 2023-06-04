@@ -1,0 +1,42 @@
+erDiagram
+
+
+user{
+id int pk
+nombres varchar
+}
+
+institucion{
+id int pk
+nombre varchar
+}
+
+carrera{
+id int pk
+nombre varchar
+id_institucion int fk
+}
+
+materia{
+id int pk
+nombre varchar
+id_carrera int fk
+id_nivel int fk
+id_paralelo int fk
+}
+
+nivel{
+id int pk
+name_nivel varchar
+}
+
+paralelo{
+id int pk
+name_paralelo varchar
+}
+
+institucion ||--o{ carrera :id_institucion
+carrera ||--o{ materia :id_carrera
+nivel ||--|| materia :id_nivel
+paralelo ||--|| materia :id_paralelo
+

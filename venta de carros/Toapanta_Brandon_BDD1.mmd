@@ -1,0 +1,90 @@
+erDiagram
+
+categoria_veiculo{
+id int pk
+nombre_categoria varchar
+}
+
+veiculo{
+id int pk
+codigo_veiculo varchar
+modelo_veiculo varchar
+id_marca int fk
+id_color int fk
+precioSinIVA_veiculo double
+PrecioConIVA_veiculo double
+stock_veiculo varchar
+id_categoria int fk
+id_manual int fk
+}
+
+manueal{
+id int pk
+nombre_manual varchar
+}
+
+marca{
+id int pk
+marca varchar
+}
+
+color{
+id int pk
+color varchar
+}
+
+color_veiculo{
+id int pk
+id_color int fk
+id_veiculo int fk
+}
+
+vendedor{
+id int pk
+codigo_vendedor varchar
+nombre_vendedor varchar
+apellido_vendedor varchar
+genero_vendedor varchar
+direccion_vendedor varchar
+telefono_vendedor varchar
+mail_vendedor varchar
+}
+
+comprador{
+id int pk
+nombre_comprador varchar
+direccion_comprador varchar
+cedula_comprador varchar
+telefono_camprador varchar
+mail_comprador varchar
+}
+
+cabecera_factura {
+id int pk
+fecha_cabecera date 
+id_comprador int fk
+id_vendedor int fk 
+}
+
+detalle_factura{
+id int pk
+cantidad_factura varchar
+id_veiculo int fk
+id_cabecera int fk
+id_iva int fk
+}
+
+iva{
+id int pk
+valor_porcientoiva varchar
+}
+color ||--o{ color_veiculo :id_color 
+veiculo ||--o{ color_veiculo :id_veiculo
+manueal ||--o{ veiculo  :id_veiculo
+marca ||--o{ veiculo  :id_marca 
+iva ||--o{ detalle_factura :id_iva   
+cabecera_factura ||--o{ detalle_factura :id_cabecera
+categoria_veiculo ||--o{ veiculo :id_categoria
+vendedor ||--o{ cabecera_factura :id_vendedor
+comprador ||--o{ cabecera_factura :id_comprador
+veiculo ||--o{ detalle_factura :id_veiculo
